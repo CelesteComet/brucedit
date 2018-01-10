@@ -1,0 +1,9 @@
+<form action="<%= locals[:action] %>" method=<%= locals[:_method] %>>
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <% locals[:columns].each do |label_name| %>
+    <label><%= label_name %>
+      <input type="text" name="<%= locals[:_name] + "[#{label_name}]" %>" value="">
+    </label>
+  <% end %>
+  <input type="submit" value="<%= locals[:submit_value] %>">
+</form>

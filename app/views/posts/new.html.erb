@@ -1,0 +1,11 @@
+<h1>Create Post</h1>
+<% columns = get_columns(@post, {
+  remove: ['sub_id', 'user_id'],
+  add: []
+}) %>
+<%= render 'layouts/form', locals: {
+  columns: columns,
+  action: sub_posts_url,
+  _method: 'POST',
+  _name: 'post',
+  submit_value: "Create New Post" } %>

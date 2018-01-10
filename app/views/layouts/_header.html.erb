@@ -1,0 +1,123 @@
+<style media="screen">
+  header {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    background: #cee3f8;
+    border: 1px solid #5f99cf;
+    font-size: larger;
+  }
+
+  header .reddit-logo {
+    width: 130px;
+    padding: 3px;
+  }
+
+  header nav ul {
+    display: flex;
+    flex-direction: row;
+    align-self: flex-end;
+    position: relative;
+  }
+
+  header ul {
+    position: absolute;
+    top: 1px;
+  }
+
+  header li {
+    list-style-type: none;
+    margin-right: 6px;
+    background: #eff7ff;
+    border-bottom: 1px solid #5f99cf;
+  }
+
+  header li a {
+    padding: 2px 6px 0 6px
+  }
+
+  header li.active {
+    border: 1px solid #5f99cf;
+    border-bottom: 1px solid white;
+    background: white;
+  }
+
+  header .welcome-img-container {
+    height: 124px;
+    padding: 7px;
+    position: relative;
+  }
+
+  .welcome-reddit-logo {
+    height: 120px;
+    background: url(<%= image_path 'welcome-reddit.png' %>);
+    background-position: 100% 50%;
+    width: 100%;
+  }
+
+  .welcome-img-container img {
+    height: 100%;
+    position: relative;
+  }
+
+  .welcome-stuff {
+    position: absolute;
+    top: 85px;
+  }
+
+  .welcome-stuff h2 {
+    font-size: 30px;
+  }
+
+  .subreddits ul {
+    display: flex;
+    flex-direction: row;
+    background: #f0f0f0;
+  }
+
+  .subreddits li {
+    padding: 2px 5px;
+  }
+
+  .subreddits a {
+    color: black;
+  }
+</style>
+
+<div class="subreddits">
+  <ul>
+    <% Sub.all.each do |sub| %>
+      <li>
+        <%= link_to sub.title.upcase, sub_url(sub) %>
+      </li>
+      -
+    <% end %>
+  </ul>
+</div>
+<header>
+  <%= image_tag "reddit-logo.svg", :class => "reddit-logo" %>
+  <nav>
+    <ul>
+      <li class='active'><a>hot</a></li>
+      <li><a href="#">new</a></li>
+      <li><a href="#">rising</a></li>
+      <li><a href="#">controversial</a></li>
+      <li><a href="#">top</a></li>
+      <li><a href="#">gilded</a></li>
+      <li><a href="#">wiki</a></li>
+    </ul>
+  </nav>
+</header>
+
+<% if current_user %>
+<div class='welcome'>
+  <div class="welcome-img-container">
+    <div class='welcome-stuff'>
+      <h2>Welcome To Reddit</h2>
+      <p>Where a community about your favorite things is waiting for you.</p>
+    </div>
+    <div class="welcome-reddit-logo"></div>
+    <!-- <%= image_tag "welcome-reddit.png" %> -->
+  </div>
+</div>
+<% end %>

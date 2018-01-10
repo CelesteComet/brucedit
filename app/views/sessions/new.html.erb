@@ -1,0 +1,11 @@
+<h1>Sign In</h1>
+<% columns = get_columns(@user, {
+  remove: ["password_digest", "session_token"],
+  add: ["password"]
+}) %>
+<%= render 'layouts/form', locals: {
+  columns: columns,
+  action: new_session_url,
+  _method: 'POST',
+  _name: 'user',
+  submit_value: "Sign In" } %>

@@ -1,0 +1,8 @@
+<section class='posts'>
+  <div class="create-post-section">
+    <%= link_to 'Create A Post', new_sub_post_url(@sub) %>
+  </div>
+  <% @sub.posts.each.with_index do |post, index| %>
+    <%= render 'posts/post_item', post: post, index: index + 1 %>
+  <% end %>
+</section>
